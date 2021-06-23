@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "assemblyscript": "^0.19.3",
-    "prettier": "2.3.1"
+    "prettier": "2.3.1",
+    "ts-migrate": "^0.1.19"
   }
 }
