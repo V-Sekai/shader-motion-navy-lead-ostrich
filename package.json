@@ -23,6 +23,7 @@
     "@assemblyscript/loader": "^0.19.3"
   },
   "devDependencies": {
-    "assemblyscript": "^0.19.3"
+    "assemblyscript": "^0.19.3",
+    "prettier": "2.3.1"
   }
 }

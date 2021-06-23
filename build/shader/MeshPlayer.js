@@ -1,5 +1,5 @@
 export default {
-    vs: `#version 300 es
+  vs: `#version 300 es
 #ifdef GL_ARB_texture_query_levels
 #extension GL_ARB_texture_query_levels : enable
 #endif
@@ -357,7 +357,7 @@ void main()
     vs_TEXCOORD2.xyz = u_xlat1.xyz;
     return;
 }`,
-    fs: `#version 300 es
+  fs: `#version 300 es
 
 precision highp float;
 precision highp int;
@@ -398,4 +398,5 @@ void main()
     SV_Target0.z = (u_xlatb0.z) ? u_xlat16_3.z : u_xlat16_2.z;
     SV_Target0.w = u_xlat16_1.w;
     return;
-}`};
+}`,
+};

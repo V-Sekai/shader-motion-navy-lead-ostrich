@@ -1,5 +1,5 @@
 export default {
-    vs: `#version 300 es
+  vs: `#version 300 es
 
 vec2 ImmCB_0_0_0[6];
 out highp vec2 vs_TEXCOORD0;
@@ -19,7 +19,7 @@ void main()
     gl_Position.zw = vec2(-1.0, 1.0);
     return;
 }`,
-    fs: `#version 300 es
+  fs: `#version 300 es
 #ifdef GL_EXT_shader_texture_lod
 #extension GL_EXT_shader_texture_lod : enable
 #endif
@@ -165,4 +165,5 @@ void main()
     u_xlat0.xyz = (-u_xlat0.yzw) * vec3(0.00390625, 0.00390625, 0.00390625) + u_xlat0.xyz;
     SV_Target0 = u_xlat0 * vec4(1.00392163, 1.00392163, 1.00392163, 1.00392163);
     return;
-}`};
+}`,
+};

@@ -1,42 +1,53 @@
 export class AnimationCurve {
-	constructor(precision=1e-3) {
-		this.keys = new Float32Array(32); // even: time, odd: value
-		this.length = 0;
-		this.precision = precision;
-	}
-	Add(time, value) {
-		let n = this.length;
-		if(n*2 == this.keys.length) {
-			const keys = new Float32Array(this.keys.length + ((this.keys.length>>2)<<1)); // 1.5x array growth
-			keys.set(this.keys);
-			this.keys = keys;
-		}
-		while(n >= 2) {
+  constructor(precision = 1e-3) {
+    this.keys = new Float32Array(32); // even: time, odd: value
+    this.length = 0;
+    this.precision = precision;
+  }
+  Add(time, value) {
+    let n = this.length;
+    if (n * 2 == this.keys.length) {
+      const keys = new Float32Array(
+        this.keys.length + ((this.keys.length >> 2) << 1)
+      ); // 1.5x array growth
+      keys.set(this.keys);
+      this.keys = keys;
+    }
+    while (n >= 2) {
       // very simple keyframe reduction
-			const time0 = this.keys[n*2-4], value0 = this.keys[n*2-3];
-			const time1 = this.keys[n*2-2], value1 = this.keys[n*2-1];
-			const time2 = time, value2 = value;
-			const area = Math.abs(
-				+ time0*value1 - time1*value0
-				+ time1*value2 - time2*value1
-				+ time2*value0 - time0*value2);
+      const time0 = this.keys[n * 2 - 4],
+        value0 = this.keys[n * 2 - 3];
+      const time1 = this.keys[n * 2 - 2],
+        value1 = this.keys[n * 2 - 1];
+      const time2 = time,
+        value2 = value;
+      const area = Math.abs(
+        +time0 * value1 -
+          time1 * value0 +
+          time1 * value2 -
+          time2 * value1 +
+          time2 * value0 -
+          time0 * value2
+      );
 
-			if(area < this.precision)
-				n--;
-			else
-				break;
-		}
-		this.keys[n*2+0] = time;
-		this.keys[n*2+1] = value;
-		this.length = n+1;
-	}
+      if (area < this.precision) n--;
+      else break;
+    }
+    this.keys[n * 2 + 0] = time;
+    this.keys[n * 2 + 1] = value;
+    this.length = n + 1;
+  }
 }
-const classIDByType = {Animator: 95};
-export function SerializeAnimationClip({name="", curves=[], frameRate=60}) {
-	const output = [];
+const classIDByType = { Animator: 95 };
+export function SerializeAnimationClip({
+  name = "",
+  curves = [],
+  frameRate = 60,
+}) {
+  const output = [];
 
-	output.push(
-`%YAML 1.1
+  output.push(
+    `%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!74 &7400000
 AnimationClip:
@@ -55,34 +66,38 @@ AnimationClip:
   m_PositionCurves: []
   m_ScaleCurves: []
   m_FloatCurves:
-`);
-	let maxTime = 0;
-	for(const [relativePath, type, propertyName, curve] of curves) {
-		if(curve.length)
-			maxTime = Math.max(maxTime, curve.keys[curve.length*2-2]);
-		output.push(
-`  - curve:
+`
+  );
+  let maxTime = 0;
+  for (const [relativePath, type, propertyName, curve] of curves) {
+    if (curve.length)
+      maxTime = Math.max(maxTime, curve.keys[curve.length * 2 - 2]);
+    output.push(
+      `  - curve:
       serializedVersion: 2
       m_Curve:
-`);
-		for(let i=0; i<curve.length; i++)
-			output.push(
-`      - serializedVersion: 2
-        time: ${curve.keys[i*2+0].toFixed(4)}
-        value: ${curve.keys[i*2+1].toFixed(4)}
-`);
-		output.push(
-`      m_PreInfinity: 2
+`
+    );
+    for (let i = 0; i < curve.length; i++)
+      output.push(
+        `      - serializedVersion: 2
+        time: ${curve.keys[i * 2 + 0].toFixed(4)}
+        value: ${curve.keys[i * 2 + 1].toFixed(4)}
+`
+      );
+    output.push(
+      `      m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: ${propertyName}
     path: ${relativePath}
     classID: ${classIDByType[type]}
     script:
-`);
-	}
-	output.push(
-`  m_PPtrCurves: []
+`
+    );
+  }
+  output.push(
+    `  m_PPtrCurves: []
   m_SampleRate: ${frameRate}
   m_WrapMode: 0
   m_Bounds:
@@ -116,6 +131,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
-`);
-	return output;
+`
+  );
+  return output;
 }
