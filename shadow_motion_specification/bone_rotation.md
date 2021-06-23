@@ -3,8 +3,8 @@
 Unity calibrates bone orientations when an avatar is imported.
 
 In most cases, x-axis is used for twist (axial motion) and yz-axes are used for swing (spherical motion).
-Its exact values can be accessed by Unity internal methods `Avatar.GetPostRotation` and `Avatar.GetLimitSign`,
-and **they do not match the axes of the bone Transform**.
+
+It's exact values can be accessed by Unity internal methods `Avatar.GetPostRotation` and `Avatar.GetLimitSign`, and **they do not match the axes of the bone Transform**.
 
 For reference, we provide a table of calibrated bone orientations when the avatar is in T-pose (facing forward),
 with Unity's axes convention +X = right, +Y = up, +Z = forward.
@@ -34,10 +34,13 @@ There are a few things worth noting in the table.
 # Bone rotation
 
 Bone rotation is computed from its neutral pose relative to its parent bone.
+
 The neutral pose, aka motorcycle pose, can be seen in avatar's muscle settings in Unity,
 and accessed by Unity internal method `Avatar.GetPreRotation`.
+
 The rotation is **expressed by swing-twist angles**, instead of euler angles or quaternion,
 for compatibility with Unity's muscle system and easier interpolation.
+
 Here is C# code for computing bone rotation, assuming calibrated orientation.
 
 ```

@@ -1,13 +1,16 @@
 # Frame layout
 
 The frame is divided into a 80×45 grid of squares.
-Each square has a power-of-two size under normal video resolution,
-and it is filled with a single color when the data exists.
+
+Each square has a power-of-two size under normal video resolution, and it is filled with a single color when the data exists.
+
 Horizontally adjacent squares are paired into a *slot*, which encodes a real number between ±1
 (encoding scheme will be introduced in later sections).
+
 As a result, **each frame represents a 40×45 matrix of real numbers between ±1**.
 
 The slots are indexed from top to down, left to right, starting from 0. For example, slots in the first three columns are 0~44, 45~89, 90~134.
+
 Currently, a humanoid avatar occupies the first three columns.
 
 | Slot  | Use                  | Slot  | Use           | Slot    | Use         |
@@ -29,6 +32,7 @@ Currently, a humanoid avatar occupies the first three columns.
 | 42~44 | RightFoot            |       |               |         |             |
 
 Most slots store swing-twist angles, in the order of XYZ, scaled from [-180°, +180°] to [-1, +1].
+
 * Finger angles are stored in the order of Proximal YZ, Intermediate Z, Distal Z.
 * LeftEye/RightEye angles are stored in the order of YZ.
 * LeftToes/RightToes have only Z angles.

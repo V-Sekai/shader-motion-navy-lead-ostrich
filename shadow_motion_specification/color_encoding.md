@@ -1,18 +1,24 @@
 # Overview
 
 This section discusses how to encode a bounded real number into RGB colors.
+
 All RGB colors are assumed to be sRGB with gamma correction, with each component in [0,1].
 
 We assume the real number is normalized in [0,1] without loss of generality.
+
 Then the encoding is simply a function from [0,1] to [0,1]ⁿ, where n is 3 times the number of colors.
+
 We require the function to be continuous to avoid jitter from quantization.
+
 As a result, the goal is to **find a continuous curve in n-dimensional cube**.
 
 # Theory
 
 The encoding curve should behave like a space-filling curve to maximize coding efficiency.
+
 We choose **base-3 Gray curve** to be the encoding curve,
 after experimenting with other bases like 2,4 and other curves like Hilbert curve.
+
 A *base-3 Gray curve* is obtained by connecting adjacent points in base-3 Gray code.
 For example when n=2, Gray code is a function from {0, .., 8} to {0,1,2}².
 
