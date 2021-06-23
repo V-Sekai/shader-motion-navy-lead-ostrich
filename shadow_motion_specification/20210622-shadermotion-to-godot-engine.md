@@ -21,12 +21,22 @@ Convert ShaderMotion videos into webm VP9.
 Crop the preview frame of the video for the left and the right side.
 
 ```
-// for w each webm
-// left side
-ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0" left_shader_motion.webm
-// right side
-ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h" right_shader_motion.webm
+# for w each webm
+# left side
+rm -rf shader_motion
+mkdir -p shader_motion
+# Take a webm video and filter it with ffmpeg so that a side is selected and then we force 60fps and output it as a png inside of a mkv container.
+ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_00.webm
+ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_01.webm
 ```
+
+```
+ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_01.webm
+```
+
+24 pixel * 24 pixel blocks
+144 pixels wide / 24 pixels = 6 blocks
+1080 pixelx high / 24 pixels = 45 blocks
 
 Encode into json format frame.
 
