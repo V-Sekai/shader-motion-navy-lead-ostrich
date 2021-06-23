@@ -1,17 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>ShaderMotion - Web Player</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <style>
-      html, body {
-        width: 100vw; height: 100vh;
-        padding: 0; margin: 0;
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
         position: relative;
         overflow: hidden;
       }
-      a:link, a:visited {
+      a:link,
+      a:visited {
         color: inherit;
       }
       body {
@@ -20,39 +27,62 @@
         font-family: Arial, Helvetica, sans-serif;
       }
       body > header {
-        width: 100%; height: 2em;
-        position: absolute; left: 0; top: 0;
+        width: 100%;
+        height: 2em;
+        position: absolute;
+        left: 0;
+        top: 0;
         background-color: #000;
       }
       body > main {
-        width: 100%; height: calc(100% - 5em);
-        position: absolute; left: 0; top: 2em;
+        width: 100%;
+        height: calc(100% - 5em);
+        position: absolute;
+        left: 0;
+        top: 2em;
       }
       body > footer {
-        width: 100%; height: 3em;
-        position: absolute; left: 0; bottom: 0;
+        width: 100%;
+        height: 3em;
+        position: absolute;
+        left: 0;
+        bottom: 0;
         background-color: #000;
       }
-      #video, #embed {
-        position: absolute; top: -3em; left: 50%; transform: translateX(-50%);
+      #video,
+      #embed {
+        position: absolute;
+        top: -3em;
+        left: 50%;
+        transform: translateX(-50%);
         height: calc(100% + 6em);
-        width: calc((100vh - 5em) / 9 * 16); max-width: 100%;
+        width: calc((100vh - 5em) / 9 * 16);
+        max-width: 100%;
         object-fit: contain;
         border: 0px;
       }
       #videoRegion {
-        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: calc((100vh - 5em) / 9 * 16); max-width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc((100vh - 5em) / 9 * 16);
+        max-width: 100%;
         visibility: hidden;
       }
       #videoRegion::before {
         content: " ";
         display: block;
-        width:100%; height:0; padding-top: 56.25%;
+        width: 100%;
+        height: 0;
+        padding-top: 56.25%;
       }
       #canvas {
-        position: absolute; left:0; top:0;
-        width: 100%; height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
         touch-action: manipulation;
       }
 
@@ -68,15 +98,18 @@
         box-sizing: border-box;
         flex-grow: 1;
       }
-      input[type=checkbox] {
+      input[type="checkbox"] {
         display: none;
       }
-      input[type="checkbox"] + label, button, select, input[type="url"] {
-        display:inline-block;
+      input[type="checkbox"] + label,
+      button,
+      select,
+      input[type="url"] {
+        display: inline-block;
         cursor: pointer;
         padding: 2px 4px;
         border-radius: 4px;
-        border: 1px solid #D0D0D0;
+        border: 1px solid #d0d0d0;
         margin: 0px;
         background: #333;
         color: inherit;
@@ -90,13 +123,16 @@
         background-color: #ddd;
         color: #333;
       }
-      input[type="checkbox"] + label:active, button:active, select:active {
+      input[type="checkbox"] + label:active,
+      button:active,
+      select:active {
         background-color: #888;
       }
 
       .fill {
         position: absolute;
-        left:0; top:0;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%;
       }
@@ -120,7 +156,7 @@
         justify-content: space-between;
       }
       @supports not (-webkit-touch-callout: none) {
-        input[type=file].hidden {
+        input[type="file"].hidden {
           display: inline-block;
           width: 0;
           height: 0;
@@ -134,8 +170,11 @@
         visibility: hidden;
       }
       .overlay {
-        width: 100%; height: 100%;
-        position: absolute; left: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
         background-color: #000c;
       }
     </style>
@@ -145,18 +184,38 @@
   <body>
     <footer class="align-center justify-space-between">
       <div><a href="LICENSE.txt">License</a></div>
-      <div style="text-align: center;">🖱️: Rotate|Zoom|Move, DBLCLK: Reset</div>
-      <div>FPS: <span id="fps" style="display: inline-block; width: 2em">?</span></div>
+      <div style="text-align: center">🖱️: Rotate|Zoom|Move, DBLCLK: Reset</div>
+      <div>
+        FPS: <span id="fps" style="display: inline-block; width: 2em">?</span>
+      </div>
     </footer>
 
     <main id="main">
       <div id="videoRegion"></div>
-      <video id="video" crossorigin controls autoplay muted loop playsinline disablePictureInPicture>
-        <source src="https://hls.vsek.ai/videos/devouring.mp4" id="videoSource">
+      <video
+        id="video"
+        crossorigin
+        controls
+        autoplay
+        muted
+        loop
+        playsinline
+        disablePictureInPicture
+      >
+        <source
+          src="https://hls.vsek.ai/videos/devouring.mp4"
+          id="videoSource"
+        />
       </video>
-      <iframe id="embed" hidden src="" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe>
+      <iframe
+        id="embed"
+        hidden
+        src=""
+        referrerpolicy="origin"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+      ></iframe>
       <canvas id="canvas"></canvas>
-    </main> 
+    </main>
 
     <header>
       <div id="tools">
@@ -165,8 +224,15 @@
           <option value="">🚷 Hide player 1</option>
           <option value="file:">📁 Open VRM file...</option>
           <option disabled>──────────</option>
-          <option value="models/v_sekai_adult-female-neural-blend-shapes.vrm" selected>V-Sekai New Adult Female</option>      
-          <option value="models/v_sekai_adult-female.vrm">V-Sekai Adult Female</option>      
+          <option
+            value="models/v_sekai_adult-female-neural-blend-shapes.vrm"
+            selected
+          >
+            V-Sekai New Adult Female
+          </option>
+          <option value="models/v_sekai_adult-female.vrm">
+            V-Sekai Adult Female
+          </option>
         </select>
         <select id="avatar1" class="icon-avatar">
           <option disabled>Choose an avatar for player 2</option>
@@ -181,21 +247,26 @@
           <option value="url:">🌐 Open Network URL...</option>
           <option value="cap:">🖥️ Capture Screen...</option>
         </select>
-        <input id="sourceUrl" type="url" value="https://youtube.com/embed/J5v5KHTqb-U" form="sourceUrlForm" hidden/>
+        <input
+          id="sourceUrl"
+          type="url"
+          value="https://youtube.com/embed/J5v5KHTqb-U"
+          form="sourceUrlForm"
+          hidden
+        />
 
         <form id="sourceUrlForm" hidden></form>
 
-        <input id="record" type="checkbox" autocomplete="off">
+        <input id="record" type="checkbox" autocomplete="off" />
         <label for="record" class="align-center justify-left">
           🔴 Export motion&nbsp;<span id="recordingTime"></span>
         </label>
 
-        <input id="sourceFile" type="file" accept=".mp4,.webm,.ogg" hidden/>
-        <input id="avatarFile" type="file" accept=".vrm" hidden/>
+        <input id="sourceFile" type="file" accept=".mp4,.webm,.ogg" hidden />
+        <input id="avatarFile" type="file" accept=".vrm" hidden />
       </div>
     </header>
 
-    <div id="overlay" class="align-center justify-center overlay" hidden>
-    </div>
+    <div id="overlay" class="align-center justify-center overlay" hidden></div>
   </body>
 </html>
