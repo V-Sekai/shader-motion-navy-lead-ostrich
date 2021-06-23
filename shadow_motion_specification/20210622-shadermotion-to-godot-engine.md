@@ -30,29 +30,7 @@ mkdir -p shader_motion_character_01
 ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=24x180:flags=lanczos+full_chroma_inp" shader_motion_character_01.webm
 ```
 
-24 pixel * 24 pixel blocks
-144 pixels wide / 24 pixels = 6 blocks
-1080 pixelx high / 24 pixels = 45 blocks
-
-Encode into json format frame.
-
-```json
-// NOT READY YET
-// DO NOT USE
-// Person NNN
-{
-    "frames": {
-        "0.0":
-            [
-                [ 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff ],
-                [ 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff ],
-                [ 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff, 0xffffff ],
-            ]
-        
-    }
-}
-```
-
+See frame layout in `frame_layout.md`.
 
 ## Positive Consequences <!-- optional -->
 
