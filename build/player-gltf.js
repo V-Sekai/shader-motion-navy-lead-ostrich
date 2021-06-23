@@ -66,28 +66,6 @@ const $source = document.querySelector("#source");
     $video.src = this.value;
     $video.muted = false;
   };
-  $sourceUrl.form.onsubmit = function (event) {
-    if (event) event.preventDefault();
-    $sourceUrl.hidden = true;
-    $source.hidden = false;
-    const url = $sourceUrl.value;
-    if (url) {
-      const { name, embed_url, raw_url } = resolveURL(url);
-      if (embed_url !== undefined) {
-        $embed.src = embed_url; // preload
-        return captureEmbed().then(
-          () => {
-            $source.value = addOption($source, `embed:${embed_url}`, name);
-            $source.onchange();
-          },
-          (e) => alert(e)
-        );
-      } else {
-        $source.value = addOption($source, raw_url, name);
-        $source.onchange();
-      }
-    }
-  };
   window.onhashchange = function (event) {
     const url = location.hash.replace(/^#/, "");
     if (/(^https?:)|(^\w\/)/.test(url)) {
