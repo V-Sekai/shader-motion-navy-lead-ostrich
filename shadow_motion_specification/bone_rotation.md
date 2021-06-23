@@ -1,9 +1,11 @@
 # Bone orientation
 
 Unity calibrates bone orientations when an avatar is imported.
+
 In most cases, x-axis is used for twist (axial motion) and yz-axes are used for swing (spherical motion).
 Its exact values can be accessed by Unity internal methods `Avatar.GetPostRotation` and `Avatar.GetLimitSign`,
 and **they do not match the axes of the bone Transform**.
+
 For reference, we provide a table of calibrated bone orientations when the avatar is in T-pose (facing forward),
 with Unity's axes convention +X = right, +Y = up, +Z = forward.
 
@@ -21,6 +23,7 @@ with Unity's axes convention +X = right, +Y = up, +Z = forward.
 | Left/Right Toes              |        |        | +X     | Right Ring/Little   |        | +Y     | +Z     |
 
 There are a few things worth noting in the table.
+
 * Some entries are omitted because the bones can't rotate in certain axes.
 * Finger orientations apply to all three bones Proximal/Intermediate/Distal.
 * Axes for right limbs can be derived from left ones by flipping signs of ±Y and ±Z.
@@ -47,6 +50,7 @@ Quaternion SwingTwist(Vector3 angles) {
 ```
 
 **The resulting swing-twist angles should match Unity animator's muscle values up to scaling.**
+
 For example, the yz-angles of the bone `Left Thumb Proximal` should be more or less
 the muscle values of `Left Thumb Spread` & `Left Thumb 1 Stretched` multiplied by the bone's range limit.
 However, this is only an *approximation* due to the complex behavior like twist distribution in Mecanim.
