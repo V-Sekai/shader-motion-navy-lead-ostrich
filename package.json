@@ -1,0 +1,19 @@
+{
+  "name": "navy-lead-ostrich",
+  "version": "1.0.0",
+  "description": "ShaderMotion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V-Sekai/navy-lead-ostrich.git"
+  },
+  "author": "V-Sekai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/V-Sekai/navy-lead-ostrich/issues"
+  },
+  "homepage": "https://github.com/V-Sekai/navy-lead-ostrich#readme"
+}
