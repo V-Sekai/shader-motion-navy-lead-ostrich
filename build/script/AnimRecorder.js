@@ -278,7 +278,7 @@ export class AnimRecorder {
   }
   saveToClip(name = "clip") {
     return new Blob(serializeAnimationClip(this.curves, name), {
-      type: "text/yaml",
+      type: "text/plain",
     });
   }
 }
