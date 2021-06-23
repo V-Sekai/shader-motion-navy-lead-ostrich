@@ -9,13 +9,13 @@ import { MotionDecoder } from "./lib/SM/MotionDecoder.js";
 import { MotionLayout } from "./lib/SM/MotionLayout.js";
 import { HumanPose } from "./lib/SM/HumanPoser.js";
 
-import { createSMMContext } from "./script2/smm.js";
-import { OrbitControls } from "./script2/OrbitControls.js";
-import { FPSCounter, resizeCanvas, downloadFile } from "./script2/util.js";
+import { createSMMContext } from "./script/smm.js";
+import { OrbitControls } from "./script/OrbitControls.js";
+import { FPSCounter, resizeCanvas, downloadFile } from "./script/util.js";
 import {
   getCaptureClientRect,
   getDisplaySurface,
-} from "./script2/ScreenCapture.js";
+} from "./script/ScreenCapture.js";
 
 let getCaptureRect;
 let motionDec;
