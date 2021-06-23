@@ -4,7 +4,6 @@ function isFullscreen(win) {
     ? win.fullScreen // firefox
     : win.outerWidth >= win.screen.width - 16 &&
         win.outerHeight >= win.screen.height - 16; // account for border
-  // && (win.innerWidth >= win.screen.width || win.innerHeight >= win.screen.height); // not maximized
 }
 function isMaximized(win) {
   return (
