@@ -41,14 +41,6 @@ const $source = document.querySelector("#source");
         this.onchange();
       });
     }
-    if (this.value === "url:") {
-      this.value = this.dataset.value;
-      $source.hidden = true;
-      $sourceUrl.hidden = false;
-      $sourceUrl.focus();
-      $sourceUrl.select();
-      return;
-    }
     if (this.value === "cap:") {
       this.value = this.dataset.value;
       captureScreen().then(
