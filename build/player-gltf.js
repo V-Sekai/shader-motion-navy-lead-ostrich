@@ -3,11 +3,11 @@ import { GLContext } from "./lib/wgl-fast.js";
 
 import * as GLTF from "./lib/GLTF/index.js";
 import * as wGLTF from "./lib/wGLTF/index.js";
-import { CreatePlayer } from "./lib/SM/MeshPlayer.js";
-import { AnimRecorder } from "./lib/SM/AnimRecorder.js";
-import { MotionDecoder } from "./lib/SM/MotionDecoder.js";
-import { MotionLayout } from "./lib/SM/MotionLayout.js";
-import { HumanPose } from "./lib/SM/HumanPoser.js";
+import { CreatePlayer } from "./lib/ShaderMotion/MeshPlayer.js";
+import { AnimRecorder } from "./lib/ShaderMotion/AnimRecorder.js";
+import { MotionDecoder } from "./lib/ShaderMotion/MotionDecoder.js";
+import { MotionLayout } from "./lib/ShaderMotion/MotionLayout.js";
+import { HumanPose } from "./lib/ShaderMotion/HumanPoser.js";
 
 import { createSMMContext } from "./script/smm.js";
 import { OrbitControls } from "./script/OrbitControls.js";
