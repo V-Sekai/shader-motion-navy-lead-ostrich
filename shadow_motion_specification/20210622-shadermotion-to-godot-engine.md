@@ -21,17 +21,13 @@ Convert ShaderMotion videos into webm VP9.
 Crop the preview frame of the video for the left and the right side.
 
 ```
-# for w each webm
-# left side
-rm -rf shader_motion
-mkdir -p shader_motion
-# Take a webm video and filter it with ffmpeg so that a side is selected and then we force 60fps and output it as a png inside of a mkv container.
-ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_00.webm
-ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_01.webm
-```
+rm -rf shader_motion_character_00
+mkdir -p shader_motion_character_00
+ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,scale=24x180:flags=lanczos+full_chroma_inp" shader_motion_character_00.webm
 
-```
-ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=6x45:flags=lanczos+full_chroma_inp" shader_motion/shader_motion_character_01.webm
+rm -rf shader_motion_character_01
+mkdir -p shader_motion_character_01
+ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=24x180:flags=lanczos+full_chroma_inp" shader_motion_character_01.webm
 ```
 
 24 pixel * 24 pixel blocks
