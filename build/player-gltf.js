@@ -3,19 +3,19 @@ import { GLContext } from "./lib/wgl-fast.js";
 
 import * as GLTF from "./lib/GLTF/index.js";
 import * as wGLTF from "./lib/wGLTF/index.js";
-import { CreatePlayer } from "./lib/ShaderMotion/MeshPlayer.js";
-import { AnimRecorder } from "./lib/ShaderMotion/AnimRecorder.js";
-import { MotionDecoder } from "./lib/ShaderMotion/MotionDecoder.js";
-import { MotionLayout } from "./lib/ShaderMotion/MotionLayout.js";
-import { HumanPose } from "./lib/ShaderMotion/HumanPoser.js";
+import { CreatePlayer } from "./lib/SM/MeshPlayer.js";
+import { AnimRecorder } from "./lib/SM/AnimRecorder.js";
+import { MotionDecoder } from "./lib/SM/MotionDecoder.js";
+import { MotionLayout } from "./lib/SM/MotionLayout.js";
+import { HumanPose } from "./lib/SM/HumanPoser.js";
 
-import { createSMMContext } from "./script/smm.js";
-import { OrbitControls } from "./script/OrbitControls.js";
-import { FPSCounter, resizeCanvas, downloadFile } from "./script/util.js";
+import { createSMMContext } from "./script2/smm.js";
+import { OrbitControls } from "./script2/OrbitControls.js";
+import { FPSCounter, resizeCanvas, downloadFile } from "./script2/util.js";
 import {
   getCaptureClientRect,
   getDisplaySurface,
-} from "./script/ScreenCapture.js";
+} from "./script2/ScreenCapture.js";
 
 let getCaptureRect;
 let motionDec;
@@ -65,6 +65,28 @@ const $source = document.querySelector("#source");
     $video.srcObject = sourceStream;
     $video.src = this.value;
     $video.muted = false;
+  };
+  $sourceUrl.form.onsubmit = function (event) {
+    if (event) event.preventDefault();
+    $sourceUrl.hidden = true;
+    $source.hidden = false;
+    const url = $sourceUrl.value;
+    if (url) {
+      const { name, embed_url, raw_url } = resolveURL(url);
+      if (embed_url !== undefined) {
+        $embed.src = embed_url; // preload
+        return captureEmbed().then(
+          () => {
+            $source.value = addOption($source, `embed:${embed_url}`, name);
+            $source.onchange();
+          },
+          (e) => alert(e)
+        );
+      } else {
+        $source.value = addOption($source, raw_url, name);
+        $source.onchange();
+      }
+    }
   };
   window.onhashchange = function (event) {
     const url = location.hash.replace(/^#/, "");
