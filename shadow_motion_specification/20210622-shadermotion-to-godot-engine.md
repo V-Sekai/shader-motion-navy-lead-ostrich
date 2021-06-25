@@ -27,6 +27,12 @@ ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60" sh
 
 See frame layout in `frame_layout.md`.
 
+Write a Blender Python script to read each frame and encode the result as a keyframe on a predefined armature which can then be exported to GLB.
+
+https://blender.stackexchange.com/questions/3527/how-to-read-pixels-of-a-video-from-python-api
+
+Support type A which is the Shader Motion strip video format and the type B which is the full-frame format.
+
 ## Positive Consequences <!-- optional -->
 
 - Can interchange motions
