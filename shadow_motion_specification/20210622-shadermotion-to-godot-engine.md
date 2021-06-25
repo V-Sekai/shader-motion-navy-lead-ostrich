@@ -21,12 +21,7 @@ Convert ShaderMotion videos into webm VP9.
 Crop the preview frame of the video for the left and the right side.
 
 ```
-rm -rf shader_motion_character_00
-mkdir -p shader_motion_character_00
 ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60" shader_motion_character_00.webm
-
-rm -rf shader_motion_character_01
-mkdir -p shader_motion_character_01
 ffmpeg -i "NNNN.webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60" shader_motion_character_01.webm
 ```
 
