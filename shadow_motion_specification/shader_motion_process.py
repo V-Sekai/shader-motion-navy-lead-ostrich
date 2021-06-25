@@ -28,10 +28,15 @@ w = img.size[0]
 h = img.size[1]
 viewer_space.image = img
 
+
+def get_pixel(pixels, x, y):
+    target = [x - 1, y - 1]
+    index = ( target[1] * w + target[0] ) * 4
+    print(f"Width: {x} Height: {y} G: {pixels[index + 1]} R: {pixels[index]} B: {pixels[index + 2]}")
+
+
 frame = 1
 for frame in range(frameStart, frameEnd, frameStep):
-    print(w)
-    print(h)
     viewer_space.image_user.frame_offset = frame
     # Toggle to refresh
     viewer_space.display_channels = 'COLOR_ALPHA'
@@ -39,10 +44,7 @@ for frame in range(frameStart, frameEnd, frameStep):
     pixels = list(viewer_space.image.pixels)
     tmp = bpy.data.images.new(name="sample"+str(frame), width=w, height=h, alpha=False, float_buffer=False)
     tmp.pixels = pixels
-    target = [0, 0] # X, Y
-    index = ( target[1] * w + target[0] ) * 4
-    print ("G: ", tmp.pixels[index + 1])
-    print ("R: ", tmp.pixels[index])
-    print ("B: ", tmp.pixels[index + 2])
+    get_pixel(tmp.pixels, 0, 0)
+    get_pixel(tmp.pixels, w , h)
 
 img.user_clear()
