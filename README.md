@@ -1,3 +1,3 @@
-# navy-lead-ostrich
+# shader-motion-navy-lead-ostrich
 
 ShaderMotion to assemblyscript
