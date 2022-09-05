@@ -138,12 +138,6 @@ function createTechniques(gl) {
     MeshPlayerAlphaTest: ext.techniques[1],
     VideoDecoder: ext.techniques[2],
   };
-  // [shaders.MeshPlayer, glob.shaders.MeshPlayerAlphaTest].map(prog => {
-  // 	gl.bindAttribLocation(prog, 0, "in_POSITION0");
-  // 	gl.bindAttribLocation(prog, 1, "in_NORMAL0");
-  // 	gl.bindAttribLocation(prog, 2, "in_TEXCOORD0");
-  // 	gl.bindAttribLocation(prog, 3, "in_TEXCOORD1");
-  // });
 }
 
 function createTextures(gl) {
