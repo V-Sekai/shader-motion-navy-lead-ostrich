@@ -1,21 +1,21 @@
-import { mat4 } from "./lib/gl-matrix.js";
-import { GLContext } from "./lib/wgl-fast.js";
+import { mat4 } from "./gl-matrix.js";
+import { GLContext } from "./wgl-fast.js";
 
-import * as GLTF from "./lib/GLTF/index.js";
-import * as wGLTF from "./lib/wGLTF/index.js";
-import { CreatePlayer } from "./lib/SM/MeshPlayer.js";
-import { AnimRecorder } from "./lib/SM/AnimRecorder.js";
-import { MotionDecoder } from "./lib/SM/MotionDecoder.js";
-import { MotionLayout } from "./lib/SM/MotionLayout.js";
-import { HumanPose } from "./lib/SM/HumanPoser.js";
+import * as GLTF from "./GLTF/index.js";
+import * as wGLTF from "./wGLTF/index.js";
+import { CreatePlayer } from "./SM/MeshPlayer.js";
+import { AnimRecorder } from "./SM/AnimRecorder.js";
+import { MotionDecoder } from "./SM/MotionDecoder.js";
+import { MotionLayout } from "./SM/MotionLayout.js";
+import { HumanPose } from "./SM/HumanPoser.js";
 
-import { createSMMContext } from "./script2/smm.js";
-import { OrbitControls } from "./script2/OrbitControls.js";
-import { FPSCounter, resizeCanvas, downloadFile } from "./script2/util.js";
+import { createSMMContext } from "./smm.js";
+import { OrbitControls } from "./OrbitControls.js";
+import { FPSCounter, resizeCanvas, downloadFile } from "./util.js";
 import {
   getCaptureClientRect,
   getDisplaySurface,
-} from "./script2/ScreenCapture.js";
+} from "./ScreenCapture.js";
 
 let getCaptureRect;
 let motionDec;
