@@ -1,0 +1,29 @@
+{
+  "name": "navy-lead-ostrich",
+  "version": "1.0.0",
+  "description": "ShaderMotion",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "asbuild:untouched": "asc assembly/index.ts --target debug",
+    "asbuild:optimized": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V-Sekai/navy-lead-ostrich.git"
+  },
+  "author": "V-Sekai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/V-Sekai/navy-lead-ostrich/issues"
+  },
+  "homepage": "https://github.com/V-Sekai/navy-lead-ostrich#readme",
+  "dependencies": {
+    "@assemblyscript/loader": "^0.19.3"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.19.3",
+    "prettier": "2.3.1"
+  }
+}
