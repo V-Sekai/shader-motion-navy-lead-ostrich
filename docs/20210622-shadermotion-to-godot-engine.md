@@ -21,15 +21,15 @@ Convert ShaderMotion videos into webm VP9.
 Crop the preview frame of the video for the left and the right side.
 
 ```
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,scale=24x180:flags=lanczos+full_chroma_inp" shadermotion_left.webm
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=24x180:flags=lanczos+full_chroma_inp" shadermotion_right.webm
+ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60" shadermotion_left.webm
+ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60" shadermotion_right.webm
 ```
 
 Select the first frame.
 
 ```
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,scale=24x180:flags=lanczos+full_chroma_inp,select=eq(n\,0)" shadermotion_left_%10d.png
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,scale=24x180:flags=lanczos+full_chroma_inp,select=eq(n\,0)" shadermotion_right_%10d.png
+ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,select=eq(n\,0)" shadermotion_left_%10d.png
+ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,select=eq(n\,0)" shadermotion_right_%10d.png
 ```
 
 See frame layout in `frame_layout.md`.
