@@ -19,7 +19,7 @@ Convert ShaderMotion videos into webm VP9.
 `yt-dlp.exe https://www.youtube.com/watch?v=FN0nvPv3A-c --recode-video webm`
 
 ```
-ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60" hadermotion_%10d.png
+ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60" shadermotion_%10d.png
 ```
 
 Select the first frame.
