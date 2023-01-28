@@ -16,20 +16,18 @@ Install youtube-dl and ffmpeg with scoop
 
 Convert ShaderMotion videos into webm VP9.
 
-`yt-dlp https://www.youtube.com/watch?v=EUIpJ0_K5tc --format 248 --recode-video webm`
-
-Crop the preview frame of the video for the left and the right side.
+`yt-dlp.exe https://www.youtube.com/watch?v=FN0nvPv3A-c --recode-video webm`
 
 ```
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60" shadermotion_left.webm
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60" shadermotion_right.webm
+ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60" shadermotion_left.webm
+ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60" shadermotion_right.webm
 ```
 
 Select the first frame.
 
 ```
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):ih:0:0,fps=60,select=eq(n\,0)" shadermotion_left_%10d.png
-ffmpeg -i "[Vケット2021] Shadermotion ： 紹介動画 [EUIpJ0_K5tc].webm" "-filter:v" "crop=in_w*(1-0.925):in_h:in_w:in_h,fps=60,select=eq(n\,0)" shadermotion_right_%10d.png
+ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60,select=eq(n\,0)" shadermotion_left_%10d.png
+ffmpeg -i "[Vket2021] Shadermotion ： Presentation (EN) [FN0nvPv3A-c].webm" "-filter:v" "fps=60,select=eq(n\,0)" shadermotion_right_%10d.png
 ```
 
 See frame layout in `frame_layout.md`.
