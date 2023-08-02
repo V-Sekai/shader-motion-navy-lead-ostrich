@@ -1,7 +1,7 @@
 import Shader_MeshPlayer from "../shader/MeshPlayer.js";
 import Shader_VideoDecoder from "../shader/VideoDecoder.js";
-import * as GLTF from "../lib/GLTF/index.js";
-import * as wGLTF from "../lib/wGLTF/index.js";
+import * as GLTF from "../GLTF/index.js";
+import * as wGLTF from "../wGLTF/index.js";
 
 export function createSMMContext(gl) {
   const techniques = createTechniques(gl);
