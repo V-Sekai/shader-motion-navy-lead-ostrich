@@ -1,4 +1,4 @@
-import { mat4 } from "../lib/gl-matrix.js";
+import { mat4 } from "../gl-matrix.js";
 export class OrbitControls {
   reset() {
     this.rotationXY = [0, 0];
