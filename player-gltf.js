@@ -454,12 +454,10 @@ function main() {
 
     if ($record.checked)
       for (const avatar of Object.values(avatars))
-        if (avatar.animRecorder.currentTime < 60) {
           avatar.animRecorder.TakeSnapshot(glob.uniforms.deltaTime);
           $recordTime.textContent = `${avatar.animRecorder.currentTime.toFixed(
             0
           )}s`;
-        }
     requestAnimationFrame(drawFrame);
   }
 }
